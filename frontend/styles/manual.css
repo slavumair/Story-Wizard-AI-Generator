@@ -1,0 +1,187 @@
+html, body, #__next {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Inter, system-ui, sans-serif;
+  color: #e0cfff;
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.18), transparent),
+              radial-gradient(1000px 500px at 90% 80%, rgba(99,102,241,0.12), transparent),
+              linear-gradient(180deg, #06153a 0%, #0b2a63 40%, #2b1062 100%);
+  background-attachment: fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.center-root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* Bubble Input Container */
+.bubble-input-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 300px; /* limit bubble width */
+  margin: 0 auto;   /* center horizontally */
+  position: relative;
+}
+
+.bubble-input-field {
+  flex: 1;
+  min-width: 0;
+  padding: 16px 56px 16px 22px;
+  border-radius: 9999px;
+  border: 4px solid #ffd54a;
+  background: rgba(255,255,255,0.92);
+  color: #0b1220;
+  font-size: 1.05rem;
+  box-shadow: 0 10px 24px rgba(2,6,23,0.35);
+  outline: none;
+  transition: box-shadow .18s ease, transform .12s ease;
+}
+
+.bubble-input-field:focus {
+  box-shadow: 0 14px 28px rgba(99,102,241,0.18), 0 6px 12px rgba(124,58,237,0.08);
+  transform: translateY(-1px);
+}
+
+/* Send Button */
+.bubble-send-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: linear-gradient(90deg, #ff7ab6 0%, #7c3aed 100%);
+  color: #ffffff;
+  box-shadow: 0 6px 14px rgba(124,58,237,0.28);
+  transition: transform .12s ease, box-shadow .12s ease, color .12s ease;
+}
+
+.bubble-send-btn:hover:not(:disabled) {
+  transform: translateY(-50%) scale(1.08);
+  color: #ffeb99;
+  box-shadow: 0 10px 22px rgba(124,58,237,0.36);
+}
+
+.bubble-send-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+  transform: translateY(-50%);
+}
+
+.bubble-send-btn svg {
+  width: 18px;
+  height: 18px;
+  color: inherit;
+}
+
+.loading-spinner {
+  font-size: 18px;
+  animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+  from { opacity: 0.5; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 5px #f9a8d4, 0 0 10px #f472b6, 0 0 20px #ec4899; }
+  50% { box-shadow: 0 0 20px #f9a8d4, 0 0 40px #f472b6, 0 0 60px #ec4899; }
+  100% { box-shadow: 0 0 5px #f9a8d4, 0 0 10px #f472b6, 0 0 20px #ec4899; }
+}
+
+.animate-pulse-glow {
+  animation: glow 1s infinite alternate;
+}
+
+/* Responsive tweaks */
+@media (max-width: 420px) {
+  .bubble-input-field {
+    padding-right: 48px;
+    font-size: 0.98rem;
+  }
+  .bubble-send-btn {
+    width: 40px;
+    height: 40px;
+    right: 10px;
+  }
+}
+
+/* Upload Buttons */
+.upload-container {
+  display: flex;
+  justify-content: center;
+  gap: 0.2rem;
+  width: 100%;
+  max-width: 300px; /* same as bubble input */
+  margin: 0 auto;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.upload-bubble {
+  flex: 0 0 auto;
+  min-width: 120px;
+  max-width: 140px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-radius: 2rem;
+  border: 3px solid rgba(255,255,255,0.3);
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(124,58,237,0.3);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  font-size: 1rem;
+}
+
+.upload-bubble:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(124,58,237,0.45);
+  background: rgba(255,255,255,0.12);
+}
+
+.upload-icon {
+  font-size: 1.2rem;
+}
+
+.upload-bubble.loading {
+  opacity: 0.8;
+  cursor: default;
+  animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+  from { transform: scale(0.97); }
+  to { transform: scale(1.03); }
+}
